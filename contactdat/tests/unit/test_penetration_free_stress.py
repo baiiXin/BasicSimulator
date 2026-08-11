@@ -2,26 +2,18 @@
 from __future__ import annotations
 
 import os
-import sys
-from pathlib import Path
-
 import numpy as np
 import pytest
 import warp as wp
 
-TOOLS = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(TOOLS))
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-
 ipctk = pytest.importorskip("ipctk")
 
+from contactdat import PenetrationFreeContact, TriMeshCollisionDetector
 from group4_stress_utils import (
     ipc_has_intersections,
     make_center_punch_displacement,
     make_two_layer_grid,
 )
-from standalone_contact.collision_detector import TriMeshCollisionDetector
-from standalone_contact.penetration_free_contact import PenetrationFreeContact
 
 
 def _device():

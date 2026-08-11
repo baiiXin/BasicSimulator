@@ -3,7 +3,8 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from standalone_contact import CollisionBufferCapacityError, TriMeshCollisionDetector
+from contactdat import TriMeshCollisionDetector
+from contactdat._src.collision_detector import CollisionBufferCapacityError
 from collision_test_utils import make_stacked_triangles
 
 

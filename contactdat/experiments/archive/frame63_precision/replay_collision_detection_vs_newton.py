@@ -9,6 +9,10 @@ from pathlib import Path
 import numpy as np
 import warp as wp
 
+REPO_ROOT = Path(__file__).resolve().parents[3]
+DEFAULT_FAILURE_DIR = REPO_ROOT / "tests" / "real" / "data"
+DEFAULT_NEWTON_REPO = REPO_ROOT / "third_party" / "newton"
+
 
 def load_combined_faces(sample_root: Path) -> np.ndarray:
     jacket_vertices = np.load(sample_root / "jacket" / "vertices.npy", mmap_mode="r")
@@ -202,16 +206,13 @@ def main():
         )
     )
     ap.add_argument("sample_root", type=Path)
-    ap.add_argument("--failure-dir", type=Path, default=Path("."))
-    ap.add_argument("--newton-repo", type=Path, default=Path("newton"))
+    ap.add_argument("--failure-dir", type=Path, default=DEFAULT_FAILURE_DIR)
+    ap.add_argument("--newton-repo", type=Path, default=DEFAULT_NEWTON_REPO)
     ap.add_argument("--device", default="cuda:0")
     ap.add_argument("--margin", type=float, default=0.05)
     ap.add_argument("--topology-ring", type=int, default=0)
     ap.add_argument("--buffer", type=int, default=64)
     args = ap.parse_args()
-
-    tools_root = Path(__file__).resolve().parent
-    sys.path.insert(0, str(tools_root))
 
     newton_repo = args.newton_repo.resolve()
     if not (newton_repo / "newton").is_dir():
@@ -221,7 +222,7 @@ def main():
         )
     sys.path.insert(0, str(newton_repo))
 
-    from standalone_contact.collision_detector import (
+    from contactdat import (
         TriMeshCollisionDetector as StandaloneDetector,
     )
 

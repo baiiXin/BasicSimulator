@@ -10,17 +10,15 @@ from pathlib import Path
 import numpy as np
 import warp as wp
 
-TOOLS = Path(__file__).resolve().parents[1]
-TESTS = TOOLS / "tests"
-sys.path.insert(0, str(TOOLS))
-sys.path.insert(0, str(TESTS))
+REPO_ROOT = Path(__file__).resolve().parents[1]
+UNIT_TESTS = REPO_ROOT / "tests" / "unit"
+sys.path.insert(0, str(UNIT_TESTS))
 
+from contactdat import PenetrationFreeContact, TriMeshCollisionDetector
 from group4_stress_utils import (
     make_center_punch_displacement,
     make_two_layer_grid,
 )
-from standalone_contact.collision_detector import TriMeshCollisionDetector
-from standalone_contact.penetration_free_contact import PenetrationFreeContact
 
 
 def sync(device):

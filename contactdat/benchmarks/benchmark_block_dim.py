@@ -1,7 +1,7 @@
 """Small manual benchmark for collision_detection_block_size.
 
-Run from the tools directory, preferably on CUDA:
-    CONTACT_TEST_DEVICE=cuda:0 python tests/benchmark_block_dim.py
+Run from an installed ContactDAT checkout, preferably on CUDA:
+    CONTACT_TEST_DEVICE=cuda:0 python benchmarks/benchmark_block_dim.py
 
 This is a benchmark, not a pytest correctness test.
 """
@@ -13,7 +13,7 @@ import time
 import numpy as np
 import warp as wp
 
-from standalone_contact import TriMeshCollisionDetector
+from contactdat import TriMeshCollisionDetector
 
 
 def make_two_layer_grid(n=36, gap=0.004):

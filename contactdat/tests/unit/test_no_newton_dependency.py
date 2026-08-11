@@ -5,10 +5,10 @@ from pathlib import Path
 
 
 def test_production_package_does_not_import_newton():
-    package = Path(__file__).resolve().parents[1] / "standalone_contact"
+    package = Path(__file__).resolve().parents[2] / "contactdat"
     offenders = []
 
-    for path in package.glob("*.py"):
+    for path in package.rglob("*.py"):
         tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
         for node in ast.walk(tree):
             if isinstance(node, ast.Import):

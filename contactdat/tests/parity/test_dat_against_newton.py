@@ -2,23 +2,13 @@
 from __future__ import annotations
 
 import os
-import sys
-from pathlib import Path
 
 import numpy as np
 import pytest
 import warp as wp
 
-
-TOOLS = Path(__file__).resolve().parents[1]
-NEWTON_REPO = TOOLS / "newton"
-
-sys.path.insert(0, str(TOOLS))
-if NEWTON_REPO.exists():
-    sys.path.insert(0, str(NEWTON_REPO))
-
-from standalone_contact.collision_detector import TriMeshCollisionInfo as StandaloneCollisionInfo
-from standalone_contact.dat_kernels import (
+from contactdat._src.collision_detector import TriMeshCollisionInfo as StandaloneCollisionInfo
+from contactdat._src.dat_kernels import (
     NUM_THREADS_PER_COLLISION_PRIMITIVE,
     apply_planar_truncation_parallel_by_collision as standalone_dat,
     apply_truncation_ts as standalone_apply_t,

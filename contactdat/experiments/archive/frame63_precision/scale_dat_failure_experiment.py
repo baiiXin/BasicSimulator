@@ -9,8 +9,7 @@ import numpy as np
 import warp as wp
 import ipctk
 
-from standalone_contact.collision_detector import TriMeshCollisionDetector
-from standalone_contact.penetration_free_contact import PenetrationFreeContact
+from contactdat import PenetrationFreeContact, TriMeshCollisionDetector
 
 
 def unique_edges_from_faces(faces: np.ndarray) -> np.ndarray:

@@ -6,6 +6,10 @@ import numpy as np
 import warp as wp
 import ipctk
 
+REPO_ROOT = Path(__file__).resolve().parents[3]
+DEFAULT_FAILURE_DIR = REPO_ROOT / "tests" / "real" / "data"
+DEFAULT_NEWTON_REPO = REPO_ROOT / "third_party" / "newton"
+
 
 def unique_edges(faces):
     faces = np.asarray(faces, dtype=np.int32)
@@ -67,23 +71,20 @@ def make_newton_ci(NewtonCI, src, device):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("sample_root", type=Path)
-    ap.add_argument("--failure-dir", type=Path, default=Path("."))
-    ap.add_argument("--newton-repo", type=Path, default=Path("newton"))
+    ap.add_argument("--failure-dir", type=Path, default=DEFAULT_FAILURE_DIR)
+    ap.add_argument("--newton-repo", type=Path, default=DEFAULT_NEWTON_REPO)
     ap.add_argument("--device", default="cuda:0")
     ap.add_argument("--margin", type=float, default=0.05)
     ap.add_argument("--gamma", type=float, default=0.85)
     ap.add_argument("--topology-ring", type=int, default=0)
     args = ap.parse_args()
 
-    tools = Path(__file__).resolve().parent
-    sys.path.insert(0, str(tools))
     newton_repo = args.newton_repo.resolve()
     if not (newton_repo/"newton").is_dir():
         raise FileNotFoundError(f"Newton checkout not found: {newton_repo}")
     sys.path.insert(0, str(newton_repo))
 
-    from standalone_contact.collision_detector import TriMeshCollisionDetector
-    from standalone_contact.penetration_free_contact import PenetrationFreeContact
+    from contactdat import PenetrationFreeContact, TriMeshCollisionDetector
 
     from newton._src.solvers.vbd.particle_vbd_kernels import (
         NUM_THREADS_PER_COLLISION_PRIMITIVE,

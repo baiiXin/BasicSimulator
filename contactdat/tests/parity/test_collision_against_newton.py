@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from standalone_contact import TriMeshCollisionDetector
+from contactdat import TriMeshCollisionDetector
 from collision_test_utils import (
     make_newton_dummy_model,
     make_two_parallel_triangles,

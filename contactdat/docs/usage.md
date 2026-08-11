@@ -6,7 +6,7 @@ This guide intentionally documents only the outer post-processing interface used
 
 ## 1. Public imports
 
-Recommended public package API:
+Public package API:
 
 ```python
 from contactdat import (
@@ -15,7 +15,7 @@ from contactdat import (
 )
 ```
 
-The package-level `contactdat/__init__.py` should only re-export these public classes from `contactdat._src`. This is a packaging change only; the algorithm implementation remains frozen.
+The package-level `contactdat/__init__.py` only re-exports these public classes from `contactdat._src`. The algorithm implementation remains internal.
 
 ## 2. Required data
 
@@ -301,6 +301,6 @@ for _ in range(num_solver_iterations):
 
 ## 8. Runtime dependency
 
-The standalone runtime should not import Newton.
+The standalone runtime does not import Newton.
 
 Newton is required only by parity tests that explicitly compare ContactDAT with the validated Newton implementation.

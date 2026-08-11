@@ -2,17 +2,11 @@
 from __future__ import annotations
 
 import os
-import sys
-from pathlib import Path
-
 import numpy as np
 import warp as wp
 
-TOOLS = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(TOOLS))
-
-from standalone_contact.collision_detector import TriMeshCollisionInfo
-from standalone_contact.penetration_free_contact import PenetrationFreeContact
+from contactdat import PenetrationFreeContact
+from contactdat._src.collision_detector import TriMeshCollisionInfo
 
 
 def _device():

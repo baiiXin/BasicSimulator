@@ -2,16 +2,10 @@
 from __future__ import annotations
 
 import os
-import sys
-from pathlib import Path
-
 import numpy as np
 import warp as wp
 
-TOOLS = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(TOOLS))
-
-from standalone_contact.dat_kernels import (
+from contactdat._src.dat_kernels import (
     apply_truncation_ts,
     planar_truncation_t,
     robust_edge_pair_normal,

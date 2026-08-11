@@ -13,5 +13,7 @@ project by The Newton Developers.
   - `newton/_src/geometry/broad_phase_common.py`
   - `newton/_src/solvers/vbd/tri_mesh_collision.py`
 
-Standalone modifications remove runtime Newton framework dependencies and retain
-NumPy + NVIDIA Warp as the implementation substrate.
+ContactDAT modifications remove runtime Newton framework dependencies and retain
+NumPy + NVIDIA Warp as the implementation substrate. The checkout under
+`third_party/newton/` is used only for parity testing and may advance beyond the
+adaptation baseline; reproducible releases should pin its exact revision.

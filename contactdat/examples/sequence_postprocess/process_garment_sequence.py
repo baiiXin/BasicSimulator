@@ -11,8 +11,7 @@ from pathlib import Path
 import numpy as np
 import warp as wp
 
-from standalone_contact.collision_detector import TriMeshCollisionDetector
-from standalone_contact.penetration_free_contact import PenetrationFreeContact
+from contactdat import PenetrationFreeContact, TriMeshCollisionDetector
 
 
 def unique_edges_from_faces(faces: np.ndarray) -> np.ndarray:
@@ -250,10 +249,12 @@ def main():
                     f"frame={frame}, micro_k={micro_k + 1}"
                 )
 
-                np.save("fail_q_before.npy", q_cur32)
-                np.save("fail_q_after.npy", q_next64)
-                np.save("fail_q_target.npy", q_target64)
-                np.save("fail_t.npy", ts.numpy())
+                failure_dir = output_root / "failure_data"
+                failure_dir.mkdir(parents=True, exist_ok=True)
+                np.save(failure_dir / "fail_q_before.npy", q_cur32)
+                np.save(failure_dir / "fail_q_after.npy", q_next64)
+                np.save(failure_dir / "fail_q_target.npy", q_target64)
+                np.save(failure_dir / "fail_t.npy", ts.numpy())
 
                 raise RuntimeError("first unsafe DAT step")
 

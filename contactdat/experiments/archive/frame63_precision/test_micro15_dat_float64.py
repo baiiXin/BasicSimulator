@@ -8,8 +8,10 @@ import numpy as np
 import warp as wp
 import ipctk
 
-from standalone_contact.collision_detector import TriMeshCollisionDetector
-from standalone_contact.penetration_free_contact import PenetrationFreeContact
+from contactdat import PenetrationFreeContact, TriMeshCollisionDetector
+
+REPO_ROOT = Path(__file__).resolve().parents[3]
+DEFAULT_FAILURE_DIR = REPO_ROOT / "tests" / "real" / "data"
 
 
 # -----------------------------------------------------------------------------
@@ -509,7 +511,7 @@ def main():
         )
     )
     ap.add_argument("sample_root", type=Path)
-    ap.add_argument("--failure-dir", type=Path, default=Path("."))
+    ap.add_argument("--failure-dir", type=Path, default=DEFAULT_FAILURE_DIR)
     ap.add_argument("--device", default="cuda:0")
     ap.add_argument("--margin", type=float, default=0.05)
     ap.add_argument("--gamma", type=float, default=0.85)

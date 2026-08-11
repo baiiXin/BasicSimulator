@@ -9,6 +9,11 @@ from pathlib import Path
 import numpy as np
 import warp as wp
 
+REPO_ROOT = Path(__file__).resolve().parents[2]
+DEFAULT_FAILURE_DIR = REPO_ROOT / "tests" / "real" / "data"
+DEFAULT_NEWTON_REPO = REPO_ROOT / "third_party" / "newton"
+DEFAULT_REPORT = REPO_ROOT / ".artifacts" / "final_newton_consistency_report.json"
+
 
 # -----------------------------------------------------------------------------
 # Geometry helpers
@@ -381,8 +386,8 @@ def main():
     )
     ap.add_argument("raw_root", type=Path)
     ap.add_argument("processed_root", type=Path)
-    ap.add_argument("--failure-dir", type=Path, default=Path("."))
-    ap.add_argument("--newton-repo", type=Path, default=Path("newton"))
+    ap.add_argument("--failure-dir", type=Path, default=DEFAULT_FAILURE_DIR)
+    ap.add_argument("--newton-repo", type=Path, default=DEFAULT_NEWTON_REPO)
     ap.add_argument("--device", default="cuda:0")
     ap.add_argument("--margin", type=float, default=0.05)
     ap.add_argument("--gamma", type=float, default=0.85)
@@ -391,12 +396,9 @@ def main():
     ap.add_argument(
         "--report",
         type=Path,
-        default=Path("final_newton_consistency_report.json"),
+        default=DEFAULT_REPORT,
     )
     args = ap.parse_args()
-
-    tools = Path(__file__).resolve().parent
-    sys.path.insert(0, str(tools))
 
     newton_repo = args.newton_repo.resolve()
     if not (newton_repo / "newton").is_dir():
@@ -405,11 +407,9 @@ def main():
         )
     sys.path.insert(0, str(newton_repo))
 
-    from standalone_contact.collision_detector import (
-        TriMeshCollisionDetector as StandaloneDetector,
-    )
-    from standalone_contact.penetration_free_contact import (
+    from contactdat import (
         PenetrationFreeContact,
+        TriMeshCollisionDetector as StandaloneDetector,
     )
 
     import newton
@@ -512,6 +512,7 @@ def main():
     }
 
     report_path = args.report.resolve()
+    report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(
         json.dumps(report, indent=2),
         encoding="utf-8",

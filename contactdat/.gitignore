@@ -6,6 +6,7 @@ __pycache__/
 build/
 dist/
 *.egg-info/
+.artifacts/
 
 # Real D-LAYERS data is local by default. Keep only the three already
 # validated frame-63 micro-step fixtures visible to Git.

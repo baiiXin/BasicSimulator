@@ -1,4 +1,4 @@
-# ContactDAT — Recommended Repository Layout
+# ContactDAT — Repository Layout
 
 ## Recommended name
 
@@ -11,7 +11,7 @@
 
 Do not use `NewtonDAT` as the public name; the implementation is adapted from Newton Physics but is not an official Newton component.
 
-## Recommended tree
+## Repository tree
 
 ```text
 contactdat/                         # repository root; replaces current tools/
@@ -28,8 +28,8 @@ contactdat/                         # repository root; replaces current tools/
 │       └── penetration_free_contact.py
 │
 ├── tests/
+│   ├── conftest.py                 # shared unit/parity configuration
 │   ├── unit/                       # Newton-independent tests
-│   │   ├── conftest.py
 │   │   ├── collision_test_utils.py
 │   │   ├── group4_stress_utils.py
 │   │   ├── test_block_dim_equivalence.py
@@ -45,6 +45,7 @@ contactdat/                         # repository root; replaces current tools/
 │   ├── parity/                     # Newton-dependent regression tests
 │   │   ├── test_collision_against_newton.py
 │   │   ├── test_dat_against_newton.py
+│   │   ├── test_topology_against_newton.py
 │   │   └── final_newton_consistency_test.py
 │   │
 │   └── real/                       # selected real D-LAYERS regressions
