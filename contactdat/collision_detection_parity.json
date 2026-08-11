@@ -1,0 +1,42 @@
+{
+  "margin": 0.05,
+  "topology_ring": 2,
+  "topology": {
+    "particle_count": 23059,
+    "standalone_triangle_count": 45411,
+    "newton_triangle_count": 45411,
+    "standalone_edge_count": 68473,
+    "newton_edge_count": 68473,
+    "max_q_diff": 0.0,
+    "triangle_arrays_equal": true,
+    "edge_geometry_sets_equal": true
+  },
+  "vt": {
+    "standalone_raw": 17189,
+    "newton_raw": 17189,
+    "standalone_unique": 17189,
+    "newton_unique": 17189,
+    "standalone_only": 0,
+    "newton_only": 0,
+    "exact_parity": true,
+    "standalone_only_examples": [],
+    "newton_only_examples": []
+  },
+  "ee_directed": {
+    "standalone_unique": 106103,
+    "newton_unique": 106103,
+    "standalone_only": 0,
+    "newton_only": 0,
+    "exact_parity": true,
+    "standalone_only_examples": [],
+    "newton_only_examples": []
+  },
+  "ee_undirected": {
+    "standalone_unique": 53621,
+    "newton_unique": 53621,
+    "standalone_only": 0,
+    "newton_only": 0,
+    "exact_parity": true
+  },
+  "collision_detection_parity": true
+}
