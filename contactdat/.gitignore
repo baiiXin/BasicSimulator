@@ -1,0 +1,27 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+*.egg-info/
+
+# Real D-LAYERS data is local by default. Keep only the three already
+# validated frame-63 micro-step fixtures visible to Git.
+/tests/real/data/*
+!/tests/real/data/fail_q_before.npy
+!/tests/real/data/fail_q_after.npy
+!/tests/real/data/fail_q_target.npy
+
+# Reproducible diagnostic outputs should not be stored at repository root.
+/*_report.json
+/collision_detection_parity.json
+/frame63_scale_experiment.csv
+/frame63_micro15_*.npy
+/micro15_reference_*.npy
+/parity_*.npy
+/fail_*.npy
+!/tests/real/data/fail_q_before.npy
+!/tests/real/data/fail_q_after.npy
+!/tests/real/data/fail_q_target.npy
